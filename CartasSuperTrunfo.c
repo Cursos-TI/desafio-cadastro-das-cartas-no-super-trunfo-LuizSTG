@@ -10,12 +10,13 @@ int main() { //Declaração de variaveis
     char estado1, estado2, codigo1[20], codigo2[20], nome1[20], nome2[20];
     int resultadopopulacao, resultadoarea, resultadopib, resultadopontos, resultadodensidade, resultadopercapita, resultadosuperpoder;
     unsigned long int populacao1, populacao2;
-    float area1, area2, pib1, pib2;
+    float area1, area2;
+    double pib1, pib2;
     int pontos1, pontos2;
     float densidade1, densidade2, percapita1, percapita2, superpoder1, superpoder2;
 
         //Aqui o usuario entrará com informações sobre a carta 01, tais como:
-        printf("Digite a incial de um estado (entre A e H): \n");//Sigla do estado (será atrelado ao número 01)
+        printf("Digite as inciais de um estado (entre A e H): \n");//Sigla do estado (será atrelado ao número 01)
             scanf(" %c", &estado1); 
 
                 // Criação manual do código da carta 1
@@ -34,13 +35,13 @@ int main() { //Declaração de variaveis
             scanf("%f", &area1);
 
         printf("Qual o PIB (Produto Interno Bruto) desta cidade? \n");//PIB
-            scanf("%f", &pib1);
+            scanf("%lf", &pib1);
 
         printf("Quantos pontos turisticos há nesta cidade? \n");//Número de Pontos Turísticos
         scanf("%d", &pontos1);
 
         //Aqui o usuario entrará com informações sobre a segunda carta, 02, tais como:
-        printf("Agora digite a inicial de outro estado (lembrando,entre A e H): \n");//Sigla do segundo estado (será atrelado ao número 02)
+        printf("Agora digite as iniciais de outro estado (lembrando,entre A e H): \n");//Sigla do segundo estado (será atrelado ao número 02)
             scanf(" %c", &estado2); 
 
                 // Criação manual do código da carta 2
@@ -59,7 +60,7 @@ int main() { //Declaração de variaveis
             scanf("%f", &area2);
 
         printf("Qual o PIB (Produto Interno Bruto) desta cidade? \n");//PIB
-            scanf("%f", &pib2);
+            scanf("%lf", &pib2);
 
         printf("Quantos pontos turisticos há nesta cidade? \n");//Número de Pontos Turísticos
         scanf("%d", &pontos2);
@@ -69,8 +70,8 @@ int main() { //Declaração de variaveis
             percapita1 = pib1 / populacao1;
             densidade2 = populacao2 / area2;//Carta 02
             percapita2 = pib2 / populacao2;
-            superpoder1 = populacao1 + area1 + pib1 + pontos1 + percapita1 + (1 / populacao1); //Calculando o poder das cartas       
-            superpoder2 = populacao2 + area2 + pib2 + pontos2 + percapita2 + (12 / populacao2);    
+            superpoder1 = populacao1 + area1 + pib1 + pontos1 + percapita1 + (area1 / populacao1); //Calculando o poder das cartas       
+            superpoder2 = populacao2 + area2 + pib2 + pontos2 + percapita2 + (area2 / populacao2);    
 
             //Exibição das cartas 
     printf("Carta 1: \n");// Carta 1
@@ -95,25 +96,19 @@ int main() { //Declaração de variaveis
     printf("Número de Pontos Turístico: %d \n", pontos2);
     printf("Densidade Populacional: %.2f hab/km² \n", densidade2);
     printf("PIB per Capita: %.2f reais \n", percapita2);
-    printf("Super Poder: %2.f \n", superpoder2);
+    printf("Super Poder: %.2f \n", superpoder2);
 
-        resultadopopulacao = populacao1 > populacao2;// Fazendo os calculos das comparações
-        resultadoarea = area1 > area2;
-        resultadopib = pib1 > pib2;
-        resultadopontos = pontos1 > pontos2;
-        resultadodensidade = densidade1 < densidade2;
-        resultadopercapita = percapita1 > percapita2;
-        resultadosuperpoder = superpoder1 > superpoder2;
-
-
-    printf("Comparação das castas: \n"); //Aqui exibira os comparativos
-    printf("Área : Carta %d venceu! \n", resultadoarea);
-    printf("PIB: Carta %d venceu! \n", resultadopib);
-    printf("Número de Pontos Turisticos: Carta %d venceu! \n", resultadopontos);
-    printf("Densidade Populacional: Carta %d venceu! \n", resultadodensidade);
-    printf("PIB per Capita:  Carta %d venceu! \n", resultadopercapita);
-    printf("Super Poder: Carta %d venceu! \n", resultadosuperpoder);
+    printf("Comparação das castas (Atributo Super Poder): \n"); //Aqui exibira os comparativos
+    printf("Carta 1 - %s(%c): %.2f \n", nome1, estado1, superpoder1);
+    printf("Carta 2 - %s(%c): %.2f \n", nome2, estado2, superpoder2);
+    
+    if (superpoder1 > superpoder2){
+        printf("Resultado: Carta 01 (%s) venceu! \n", nome1);
+    } else {
+        printf("Resultado: Carta 02 (%s) venceu! \n", nome2);
+    }
 
     return 0;
 }
  
+    
